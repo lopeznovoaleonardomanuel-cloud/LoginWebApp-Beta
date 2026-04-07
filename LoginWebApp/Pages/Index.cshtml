@@ -1,0 +1,88 @@
+﻿@page "/Dashboard"
+@model IndexModel
+@{
+    ViewData["Title"] = "Panel de Control";
+    
+    string inicial = User.Identity?.Name?.Substring(0, 1).ToUpper() ?? "U";
+}
+
+<div class="min-h-screen bg-slate-50 flex">
+    <aside class="w-64 bg-slate-900 text-white hidden md:flex flex-col">
+        <div class="p-6 text-xl font-bold border-b border-slate-800">
+            🚀 MiApp Tareas
+        </div>
+        <nav class="flex-1 p-4 space-y-2">
+            <a href="#" class="block p-3 bg-slate-800 rounded-lg text-white">Inicio</a>
+            <a href="#" class="block p-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition">Tareas</a>
+            <a href="#" class="block p-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition">Reportes</a>
+        </nav>
+        <div class="p-4 border-t border-slate-800">
+            <form method="post" asp-page="/Login" asp-page-handler="Logout">
+                <button type="submit" class="w-full text-left p-3 text-red-400 hover:bg-red-900/20 rounded-lg transition">
+                    Cerrar Sesión
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <main class="flex-1 p-8">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-800">Dashboard de Actividades</h1>
+                <p class="text-slate-500">Bienvenido de nuevo al sistema.</p>
+            </div>
+
+            <div class="flex items-center space-x-4 bg-white p-2 pr-4 rounded-full shadow-sm border border-slate-200">
+                <div class="h-10 w-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold">
+                    @inicial
+                </div>
+                <div class="text-sm">
+                    <p class="font-semibold text-slate-900 leading-none">@User.Identity?.Name</p>
+                    <p class="text-slate-500 text-xs mt-1">En línea</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <p class="text-slate-500 text-sm font-medium">Tareas Pendientes</p>
+                <h3 class="text-3xl font-bold text-slate-900 mt-1">12</h3>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <p class="text-slate-500 text-sm font-medium">Completadas</p>
+                <h3 class="text-3xl font-bold text-green-600 mt-1">45</h3>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <p class="text-slate-500 text-sm font-medium">Proyectos Activos</p>
+                <h3 class="text-3xl font-bold text-indigo-600 mt-1">3</h3>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="p-6 border-b border-slate-100">
+                <h3 class="font-bold text-slate-800">Últimas Tareas Asignadas</h3>
+            </div>
+            <table class="w-full text-left text-sm">
+                <thead class="bg-slate-50 text-slate-500 uppercase text-xs">
+                    <tr>
+                        <th class="px-6 py-4 font-semibold">Tarea</th>
+                        <th class="px-6 py-4 font-semibold">Estado</th>
+                        <th class="px-6 py-4 font-semibold">Fecha</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    <tr>
+                        <td class="px-6 py-4 text-slate-700 font-medium">Configurar Base de Datos</td>
+                        <td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 text-green-700 rounded-md text-xs">Listo</span></td>
+                        <td class="px-6 py-4 text-slate-500">Hoy</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 text-slate-700 font-medium">Diseño de Interfaz</td>
+                        <td class="px-6 py-4"><span class="px-2 py-1 bg-amber-100 text-amber-700 rounded-md text-xs">En progreso</span></td>
+                        <td class="px-6 py-4 text-slate-500">Mañana</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>

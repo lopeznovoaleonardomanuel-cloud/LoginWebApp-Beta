@@ -1,0 +1,51 @@
+﻿@page "/"
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+    <div class="w-full max-w-md bg-white rounded-xl border border-slate-200 shadow-sm p-8">
+
+        <div class="flex flex-col space-y-1.5 mb-6 text-center">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight text-slate-900">Bienvenido</h3>
+            <p class="text-sm text-slate-500">Ingresa tus credenciales para acceder</p>
+        </div>
+
+        <form method="post" class="space-y-4">
+            <div class="space-y-2">
+                <label class="text-sm font-medium leading-none text-slate-700" for="email">
+                    Correo Electrónico
+                </label>
+                <input asp-for="Correo" type="email"
+                       class="flex h-10 w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                       placeholder="nombre@ejemplo.com" required />
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-sm font-medium leading-none text-slate-700" for="password">
+                    Contraseña
+                </label>
+                <input asp-for="Clave" type="password"
+                       class="flex h-10 w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                       required />
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.Mensaje))
+            {
+                <div class="bg-red-50 border border-red-200 text-red-600 text-sm p-3 rounded-md">
+                    @Model.Mensaje
+                </div>
+            }
+
+            <button type="submit"
+                    class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-slate-900 text-slate-50 hover:bg-slate-900/90 h-10 px-4 py-2 w-full mt-2">
+                Iniciar Sesión
+            </button>
+        </form>
+
+        <div class="mt-6 text-center text-sm text-slate-500">
+            ¿No tienes cuenta? <a href="#" class="underline underline-offset-4 hover:text-slate-900">Regístrate</a>
+        </div>
+    </div>
+</div>
